@@ -46,12 +46,24 @@
       <nav class="menu" aria-label="Navegação principal">
         <a href="#inicio">Início</a>
         <a href="#areas">Áreas</a>
+        <a href="#projetos">Projetos</a>
         <a href="#experiencia">Experiência</a>
         <a href="#formacao">Formação</a>
         <a href="#contato">Contato</a>
       </nav>
 
       <a class="seta" href="#areas" aria-label="Ir para as áreas">↓</a>
+
+      <!-- Botão para alternar entre os temas. -->
+      <button
+        class="botao-tema"
+        id="alternar-tema"
+        type="button"
+        aria-label="Ativar modo claro"
+        title="Alternar tema"
+      >
+        ☼
+      </button>
 
     </header>
 
@@ -538,6 +550,71 @@
 
     </section>
 
+    <!-- Projetos que já desenvolvi ou estou praticando. -->
+    <section class="secao" id="projetos">
+
+      <div class="secao-topo">
+        <span class="rotulo">PROJETOS</span>
+
+        <h2>O que estou construindo.</h2>
+
+        <p class="apoio">
+          Alguns trabalhos e estudos que fazem parte do meu
+          desenvolvimento na área de informática.
+        </p>
+      </div>
+
+      <div class="cartoes projetos-grade">
+
+        <article class="cartao">
+          <span>HTML · CSS · JAVASCRIPT</span>
+
+          <h3>Portfólio interativo</h3>
+
+          <p>
+            Este site foi desenvolvido para praticar a criação
+            de páginas, a organização visual e as interações
+            com JavaScript. O disco funciona como uma forma
+            diferente de navegar entre as áreas.
+          </p>
+
+          <a href="#inicio" class="link-projeto">
+            Ver portfólio
+          </a>
+        </article>
+
+        <article class="cartao">
+          <span>CREA-MG · GESTÃO DOCUMENTAL</span>
+
+          <h3>Guias de uso do SEI</h3>
+
+          <p>
+            Criação de passo a passos para orientar pessoas
+            no uso do sistema SEI, buscando deixar as instruções
+            mais claras e fáceis de acompanhar.
+          </p>
+
+          <small>Experiência profissional</small>
+        </article>
+
+        <article class="cartao">
+          <span>C# · ESTUDOS</span>
+
+          <h3>Exercícios de programação</h3>
+
+          <p>
+            Prática de lógica de programação, algoritmos e
+            resolução de problemas durante meus estudos
+            de C#.
+          </p>
+
+          <small>Em aprendizado</small>
+        </article>
+
+      </div>
+
+    </section>
+
     <!-- Experiência profissional. -->
     <section class="secao" id="experiencia">
 
@@ -676,6 +753,61 @@
           Você pode conhecer meus estudos no GitHub ou entrar em contato por e-mail.
         </p>
 
+        <!-- Formulário de contato. -->
+        <form class="form-contato" id="form-contato">
+
+          <label for="nome-contato">Nome</label>
+
+          <input
+            type="text"
+            id="nome-contato"
+            name="nome"
+            placeholder="Seu nome"
+            autocomplete="name"
+            required
+          >
+
+          <label for="telefone-contato">Telefone</label>
+
+          <input
+            type="tel"
+            id="telefone-contato"
+            name="telefone"
+            placeholder="(31) 99999-9999"
+            autocomplete="tel"
+            inputmode="numeric"
+            maxlength="15"
+            pattern="\([0-9]{2}\) [0-9]{4,5}-[0-9]{4}"
+            required
+          >
+
+          <label for="email-contato">E-mail</label>
+
+          <input
+            type="email"
+            id="email-contato"
+            name="email"
+            placeholder="seuemail@exemplo.com"
+            autocomplete="email"
+            required
+          >
+
+          <label for="mensagem-contato">Mensagem</label>
+
+          <textarea
+            id="mensagem-contato"
+            name="mensagem"
+            placeholder="Escreva sua mensagem..."
+            rows="5"
+            required
+          ></textarea>
+
+          <button type="submit" class="botao">
+            Preparar mensagem
+          </button>
+
+        </form>
+
         <div class="contato-botoes">
           <a href="https://github.com/joaodesmolins52-code">GitHub</a>
           <a href="mailto:joaodesmolins52@gmail.com">E-mail</a>
@@ -684,6 +816,48 @@
       </div>
 
     </section>
+
+    <!-- Janela de confirmação do contato. -->
+    <div class="modal-fundo" id="modal-contato" hidden>
+
+      <div
+        class="modal-caixa"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="titulo-modal"
+      >
+
+        <span class="rotulo">CONTATO</span>
+
+        <h2 id="titulo-modal">Sua mensagem está pronta.</h2>
+
+        <p id="texto-modal">
+          Ao continuar, seu aplicativo de e-mail será aberto com os dados preenchidos.
+        </p>
+
+        <div class="modal-botoes">
+
+          <button
+            type="button"
+            class="botao-claro"
+            id="fechar-modal"
+          >
+            Voltar
+          </button>
+
+          <button
+            type="button"
+            class="botao"
+            id="abrir-email"
+          >
+            Abrir e-mail
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
 
     <!-- Linhas SVG decorativas no encerramento. -->
     <div class="encerramento">
@@ -707,6 +881,27 @@
       <div class="encerramento-brilho"></div>
 
     </div>
+
+    <!-- Rodapé com links de contato. -->
+    <footer class="rodape">
+
+      <p>© 2026 João Victor · Portfólio pessoal</p>
+
+      <div>
+        <a
+          href="https://github.com/joaodesmolins52-code"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+
+        <a href="mailto:joaodesmolins52@gmail.com">
+          E-mail
+        </a>
+      </div>
+
+    </footer>
 
   </div>
 
