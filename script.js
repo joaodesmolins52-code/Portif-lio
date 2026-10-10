@@ -5,8 +5,10 @@ const nomesFases = {
     phase4: "Banco de Dados",
     phase5: "C#"
 };
+// Isso são os nomes q variam e tals
 
 const configuracoes = {
+    // Essas são as confgs de cada uma das linhas de svg e afins
     phase1: {
         linhas: 7,
         pontos: 170,
@@ -84,14 +86,14 @@ const configuracoes = {
 };
 
 const svgNS = "http://www.w3.org/2000/svg";
+// Mais essa chatisse de SVG
 
-const textoDinamico =
-    document.querySelector("#texto-dinamico");
+const textoDinamico = document.querySelector("#texto-dinamico");
+// essa parte é legal, é o meu texto q fica mudando quando vc muda de fase
 
-const fases =
-    document.querySelectorAll(
-        'input[name="phase"]'
-    );
+const fases = document.querySelectorAll(
+    'input[name="phase"]'
+);
 
 const containerBase =
     document.querySelector("#bg-base");
@@ -108,6 +110,7 @@ let mouseFrame = null;
 
 let mouseX = -1000;
 let mouseY = -1000;
+// descobri q é assim q se acha X e Y e dps configurei pro lugar onde queria q ele fosse usado
 
 function embaralharTexto(elemento, texto) {
 
@@ -123,6 +126,7 @@ function embaralharTexto(elemento, texto) {
 
     const caracteres =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*";
+    //   Achei meio engraçado o resultado final mas isso aqui é as possiveis variações de palavras
 
     for (
         let i = 0;
@@ -130,20 +134,18 @@ function embaralharTexto(elemento, texto) {
         i++
     ) {
 
-        const span =
-            document.createElement("span");
+        const span = document.createElement("span");
 
-        span.className =
-            "scramble-char";
+        span.className = "scramble-char";
 
         span.textContent =
             texto[i] === " "
                 ? " "
                 : caracteres[
-                    Math.floor(
-                        Math.random() *
-                        caracteres.length
-                    )
+                Math.floor(
+                    Math.random() *
+                    caracteres.length
+                )
                 ];
 
         spans.push(span);
@@ -152,8 +154,10 @@ function embaralharTexto(elemento, texto) {
     }
 
     elemento.replaceChildren(fragment);
+    //   Isso eu ainda n entendi direito, foi mal mas peguei essa linha com IA
 
     let contador = 0;
+    // fiquei com preguiça agora ent vou parar de comentar, dcp Susu kkkk
 
     intervaloScramble = setInterval(() => {
 
@@ -187,10 +191,10 @@ function embaralharTexto(elemento, texto) {
 
                 span.textContent =
                     caracteres[
-                        Math.floor(
-                            Math.random() *
-                            caracteres.length
-                        )
+                    Math.floor(
+                        Math.random() *
+                        caracteres.length
+                    )
                     ];
 
                 span.className =
@@ -565,7 +569,7 @@ function criarPath(
         config.linhas === 1
             ? 0
             : linha /
-              (config.linhas - 1);
+            (config.linhas - 1);
 
     const centro =
         nivel - .5;
@@ -612,9 +616,9 @@ function criarPath(
     path.setAttribute(
         "stroke-width",
         linha ===
-        Math.floor(
-            config.linhas / 2
-        )
+            Math.floor(
+                config.linhas / 2
+            )
             ? "2.8"
             : "1.6"
     );
