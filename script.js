@@ -88,8 +88,8 @@ const configuracoes = {
 const svgNS = "http://www.w3.org/2000/svg";
 // Mais essa chatisse de SVG
 
-const textoDinamico = document.querySelector("#texto-dinamico");
 // essa parte é legal, é o meu texto q fica mudando quando vc muda de fase
+const textoDinamico = document.querySelector("#letreiro");
 
 const fases = document.querySelectorAll(
     'input[name="phase"]'
@@ -311,7 +311,7 @@ function criarGradiente(svg) {
 
         stop.setAttribute(
             "stop-color",
-            "var(--accent)"
+            "var(--cor-destaque)"
         );
 
         stop.setAttribute(
