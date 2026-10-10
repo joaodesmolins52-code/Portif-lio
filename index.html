@@ -1,394 +1,715 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0f0818">
+
   <title>João Victor | Portfólio</title>
+
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <!-- Defer permite que o JavaScript seja executado após a leitura do HTML. -->
 </head>
+
 <body>
-  <input type="radio" name="phase" id="phase1" checked>
-  <input type="radio" name="phase" id="phase2">
-  <input type="radio" name="phase" id="phase3">
-  <input type="radio" name="phase" id="phase4">
-  <input type="radio" name="phase" id="phase5">
 
-  <div class="site">
-    <div class="led-background" id="bg-base"></div>
-    <div class="led-background-glow" id="bg-glow"></div>
+  <div class="site CorpoSite palco" id="site">
 
-    <header class="header">
-      <div class="logo">
-        <div class="logo-icon">JV</div>
+    <!-- Seleção das cinco áreas do portfólio. -->
+    <div class="inputs-fase" aria-label="Seleção de áreas">
+      <input type="radio" name="phase" id="phase1" checked>
+      <input type="radio" name="phase" id="phase2">
+      <input type="radio" name="phase" id="phase3">
+      <input type="radio" name="phase" id="phase4">
+      <input type="radio" name="phase" id="phase5">
+    </div>
 
-        <div class="logo-text">
+    <!-- Camadas das ondas SVG. -->
+    <div class="ondas" id="bg-base" aria-hidden="true"></div>
+    <div class="ondas ondas-brilho" id="bg-glow" aria-hidden="true"></div>
+
+    <!-- Cabeçalho. -->
+    <header class="cabecalho">
+
+      <div class="marca">
+        <div class="marca-icone">
+          <span>JV</span>
+        </div>
+
+        <div class="marca-texto">
           <strong>JOÃO VICTOR</strong>
           <span>PORTFÓLIO</span>
         </div>
       </div>
 
-      <nav>
-        <a href="#">Início</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#habilidades">Habilidades</a>
-        <a href="#projetos">Projetos</a>
+      <nav class="menu" aria-label="Navegação principal">
+        <a href="#inicio">Início</a>
+        <a href="#areas">Áreas</a>
+        <a href="#experiencia">Experiência</a>
+        <a href="#formacao">Formação</a>
         <a href="#contato">Contato</a>
       </nav>
 
-      <div>
-        <a href="#" class="theme-icon">↓</a>
-      </div>
+      <a class="seta" href="#areas" aria-label="Ir para as áreas">↓</a>
+
     </header>
 
-    <main class="hero">
-      <section class="presentation">
-        <span class="eyebrow">PORTFÓLIO DIGITAL</span>
+    <!-- Abertura: apresentação, vitrola e painel são três colunas irmãs. -->
+    <main class="abertura" id="inicio">
+
+      <!-- Apresentação pessoal. -->
+      <section class="apresentacao">
+
+        <span class="BreveIntro">PORTFÓLIO DIGITAL · 2026</span>
 
         <h1>
           Olá, eu sou
-          <strong class="nome-logo" id="Nome">
-            <span>J</span><span>O</span><span>Ã</span><span>O</span>
-            <span>-</span>
-            <span>V</span><span>I</span><span>C</span><span>T</span><span>O</span><span>R</span>
-          </strong>
+          <strong class="nome-animado"
+            id="nome-principal"><span>J</span><span>O</span><span>Ã</span><span>O</span><span>-</span><span>V</span><span>I</span><span>C</span><span>T</span><span>O</span><span>R</span></strong>
         </h1>
 
         <h2>
-          Desenvolvedor de <span id="texto-dinamico"></span>
+          Estudante de <span id="letreiro"></span>
         </h2>
 
         <p>
-          Transformo ideias em interfaces
-          criativas, modernas e funcionais.
+          Sou estudante de Informática no COTEMIG e estou atuando, há sete meses, como jovem aprendiz na Gestão
+          Documental
+          do CREA-MG. Gosto de entender problemas, organizar informações e criar experiências digitais claras.
         </p>
 
-        <div class="buttons">
-          <a href="https://github.com/joaodesmolins52-code" class="primary-button" target="_blank" rel="noopener noreferrer">
-            Ver meus projetos
+        <div class="botoes">
+          <a href="https://github.com/joaodesmolins52-code" class="botao">
+            Ver meu GitHub
           </a>
 
-          <a href="https://wa.me/5531985020154" class="secondary-button" target="_blank" rel="noopener noreferrer">
-            Entrar em contato
+          <a href="mailto:joaodesmolins52@gmail.com" class="botao-claro">
+            Enviar e-mail
           </a>
         </div>
 
-        <div class="socials">
-          <a href="#" aria-label="GitHub">GH</a>
-          <a href="#" aria-label="LinkedIn">IN</a>
-          <a href="#" aria-label="Instagram">IG</a>
+        <div class="redes">
+          <a href="https://github.com/joaodesmolins52-code" aria-label="GitHub">
+            GH
+          </a>
         </div>
+
       </section>
 
-      <section class="disc-area">
-        <div class="disc-wrapper">
-          <div class="disc">
-            <div class="disc-shine"></div>
+      <!-- Vitrola: o disco e suas cinco áreas. -->
+      <section class="vitrola" aria-label="Áreas representadas no disco">
 
-            <div class="disc-center">
-              <div class="disc-hole"></div>
+        <div class="vitrola-caixa">
+
+          <div class="disco">
+
+            <div class="disco-brilho"></div>
+
+            <div class="disco-miolo">
+              <div class="disco-furo"></div>
             </div>
 
-            <label for="phase1" class="disc-sector sector-1">
-              <div class="sector-content">
+            <label for="phase1" class="setor setor-1">
+              <div>
                 <span>01</span>
-                <strong>UI & UX</strong>
+                <strong>UI &amp; UX</strong>
               </div>
             </label>
 
-            <label for="phase2" class="disc-sector sector-2">
-              <div class="sector-content">
+            <label for="phase2" class="setor setor-2">
+              <div>
                 <span>02</span>
                 <strong>Front-end</strong>
               </div>
             </label>
 
-            <label for="phase3" class="disc-sector sector-3">
-              <div class="sector-content">
+            <label for="phase3" class="setor setor-3">
+              <div>
                 <span>03</span>
                 <strong>AmbComp</strong>
               </div>
             </label>
 
-            <label for="phase4" class="disc-sector sector-4">
-              <div class="sector-content">
+            <label for="phase4" class="setor setor-4">
+              <div>
                 <span>04</span>
-                <strong>BANCO DADOS</strong>
+                <strong>Dados</strong>
               </div>
             </label>
 
-            <label for="phase5" class="disc-sector sector-5">
-              <div class="sector-content">
+            <label for="phase5" class="setor setor-5">
+              <div>
                 <span>05</span>
                 <strong>C#</strong>
               </div>
             </label>
+
           </div>
 
-          <span class="disc-instruction">
-            Clique em uma faixa para sintonizar na vibe de musica desejada.
+          <span class="disco-dica">
+            Escolha uma faixa do disco para mudar de área.
           </span>
+
         </div>
+
       </section>
 
-      <section class="phase-info">
-        <div class="phase-content phase-content-1">
-          <span class="phase-label">FAIXA ATUAL</span>
-          <span class="phase-number">01</span>
-          <h2>UI  UX</h2>
-          <h3>Design de Interfaces</h3>
+      <!-- Painel lateral que muda conforme a faixa selecionada. -->
+      <section class="painel">
+
+        <div class="painel-faixa painel-1">
+          <span class="rotulo">FAIXA ATUAL</span>
+          <span class="faixa-numero">01</span>
+
+          <h2>UI &amp; UX</h2>
+
+          <h3>Interfaces com intenção</h3>
+
           <p>
-            Criação de interfaces intuitivas, funcionais e visualmente consistentes. Nesta área, desenvolvo layouts pensando na experiência do usuário, hierarquia visual e organização das informações.
+            Tenho interesse em interfaces fáceis de compreender. Estudo hierarquia visual, organização de conteúdo e
+            caminhos que ajudam as pessoas a usar um sistema.
           </p>
 
-          <div class="traits">
-            <span>Figma</span>
-            <span>Prototipação</span>
-            <span>Experiência do usuário</span>
+          <div class="etiquetas">
+            <span>Hierarquia visual</span>
+            <span>Organização de conteúdo</span>
+            <span>Estudo contínuo</span>
           </div>
         </div>
 
-        <div class="phase-content phase-content-2">
-          <span class="phase-label">FASE ATUAL</span>
-          <span class="phase-number">02</span>
+        <div class="painel-faixa painel-2">
+          <span class="rotulo">FAIXA ATUAL</span>
+          <span class="faixa-numero">02</span>
+
           <h2>FRONT-END</h2>
-          <h3>Desenvolvimento Web</h3>
+
+          <h3>Construindo para a web</h3>
+
           <p>
-            Transformo layouts e ideias em páginas funcionais utilizando tecnologias fundamentais da web. Busco desenvolver interfaces responsivas, organizadas e com atenção aos detalhes.
+            Aprendo a transformar uma estrutura HTML em uma interface com CSS e a adicionar interações com JavaScript.
+            Este portfólio é um exercício de prática e evolução.
           </p>
 
-          <div class="traits">
-            <span>HTML  CSS</span>
-            <span>JavaScript</span>
-            <span>Responsividade</span>
+          <div class="etiquetas">
+            <span>HTML e CSS</span>
+            <span>JavaScript em estudo</span>
+            <span>Layout responsivo</span>
           </div>
         </div>
 
-        <div class="phase-content phase-content-3">
-          <span class="phase-label">FASE ATUAL</span>
-          <span class="phase-number">03</span>
-          <h2>AmbComp</h2>
-          <h3>Organização e gerenciamento</h3>
+        <div class="painel-faixa painel-3">
+          <span class="rotulo">FAIXA ATUAL</span>
+          <span class="faixa-numero">03</span>
+
+          <h2>AMBCOMP</h2>
+
+          <h3>Hardware e computação</h3>
+
           <p>
-            Aprendizado sobre estruturação, armazenamento e manipulação de dados. Trabalho com consultas SQL e conceitos fundamentais para organizar informações de forma eficiente.
+            Minha formação técnica no COTEMIG inclui fundamentos de informática. Também concluí o certificado de
+            Fundamentos do Hardware do Computador, pelo COTEMIG e Cisco Networking Academy.
           </p>
 
-          <div class="traits">
-            <span>MySQL</span>
-            <span>SQL</span>
-            <span>Modelagem de dados</span>
+          <div class="etiquetas">
+            <span>Hardware — básico</span>
+            <span>Fundamentos de computação</span>
+            <span>Aprendizado técnico</span>
           </div>
         </div>
 
-        <div class="phase-content phase-content-4">
-          <span class="phase-label">FASE ATUAL</span>
-          <span class="phase-number">04</span>
-          <h2>Banco de Dados</h2>
-          <h3>PROGRAMAÇÃO</h3>
-          <h3>Lógica e desenvolvimento</h3>
+        <div class="painel-faixa painel-4">
+          <span class="rotulo">FAIXA ATUAL</span>
+          <span class="faixa-numero">04</span>
+
+          <h2>BANCO DE DADOS</h2>
+
+          <h3>Informações organizadas</h3>
+
           <p>
-            Desenvolvimento do raciocínio lógico e da capacidade de transformar problemas em soluções através da programação. Aqui, foco na construção de algoritmos e na compreensão dos fundamentos do desenvolvimento de software.
+            Estudo conceitos de bancos de dados e SQL. Na gestão documental, também vejo como a organização e a
+            recuperação de informações fazem diferença nos processos institucionais.
           </p>
 
-          <div class="traits">
-            <span>Lógica</span>
-            <span>Algoritmos</span>
+          <div class="etiquetas">
+            <span>Conceitos de SQL</span>
+            <span>Organização de dados</span>
+            <span>Gestão documental</span>
+          </div>
+        </div>
+
+        <div class="painel-faixa painel-5">
+          <span class="rotulo">FAIXA ATUAL</span>
+          <span class="faixa-numero">05</span>
+
+          <h2>C#</h2>
+
+          <h3>Lógica em construção</h3>
+
+          <p>
+            Tenho conhecimento básico de lógica de programação em C#. Estou construindo minha base com exercícios,
+            algoritmos e resolução de problemas, reconhecendo que ainda tenho muito a aprender.
+          </p>
+
+          <div class="etiquetas">
+            <span>C# — básico</span>
+            <span>Lógica de programação</span>
             <span>Resolução de problemas</span>
           </div>
         </div>
 
-        <div class="phase-content phase-content-5">
-          <span class="phase-label">FASE ATUAL</span>
-          <span class="phase-number">05</span>
-          <h2>C#</h2>
-          <h3>PROGRAMAÇÃO</h3>
-          <p>
-            Estudo de C# voltado para lógica de programação, orientação a objetos e desenvolvimento de aplicações. A linguagem me ajuda a desenvolver uma base sólida de programação, trabalhando conceitos como classes, métodos, estruturas de dados e organização de código.
-          </p>
-
-          <div class="traits">
-            <span>POO</span>
-            <span>Estruturas de Dados</span>
-            <span>C#</span>
-          </div>
-        </div>
       </section>
+
     </main>
 
-    <div class="phase-dots">
-      <label for="phase1" class="dot dot-1"></label>
-      <label for="phase2" class="dot dot-2"></label>
-      <label for="phase3" class="dot dot-3"></label>
-      <label for="phase4" class="dot dot-4"></label>
-      <label for="phase5" class="dot dot-5"></label>
+    <!-- Bolinhas fixas que também selecionam as faixas. -->
+    <div class="bolinhas">
+      <label for="phase1" class="bolinha bolinha-1" aria-label="Faixa 1"></label>
+      <label for="phase2" class="bolinha bolinha-2" aria-label="Faixa 2"></label>
+      <label for="phase3" class="bolinha bolinha-3" aria-label="Faixa 3"></label>
+      <label for="phase4" class="bolinha bolinha-4" aria-label="Faixa 4"></label>
+      <label for="phase5" class="bolinha bolinha-5" aria-label="Faixa 5"></label>
     </div>
 
-    <section id="sobre" class="section-content">
-      <div class="theme-content theme-content-1">
-        <span class="section-label">01 — UI  UX</span>
-        <h2>Design de interfaces.</h2>
-        <p>
-          Criação de interfaces intuitivas e visualmente consistentes, pensando na organização das informações e na experiência do usuário.
-        </p>
+    <!-- Seção de áreas e projetos. -->
+    <section class="secao" id="areas">
 
-        <div class="traits">
-          <span>Figma</span>
-          <span>Prototipação</span>
-          <span>UX</span>
-        </div>
+      <div class="secao-topo">
+        <span class="rotulo">ÁREAS EM FOCO</span>
+
+        <h2>Troque a faixa, troque o assunto.</h2>
+
+        <p class="apoio">
+          Use o disco ou as bolinhas fixas no rodapé para mudar de área sem sair desta página.
+        </p>
       </div>
 
-      <div class="theme-content theme-content-2">
-        <span class="section-label">02 — FRONT-END</span>
-        <h2>Interfaces para a web.</h2>
-        <p>
-          Desenvolvimento de páginas utilizando HTML, CSS e JavaScript, buscando interfaces funcionais, organizadas e responsivas.
-        </p>
+      <!-- Área 1: UI e UX. -->
+      <article class="area area-1">
 
-        <div class="traits">
-          <span>HTML</span>
-          <span>CSS</span>
-          <span>JavaScript</span>
+        <div class="area-texto">
+          <span class="rotulo">01 — UI &amp; UX</span>
+
+          <h2>Design que ajuda a entender.</h2>
+
+          <p>
+            Tenho interesse em design de interfaces e na forma como a disposição dos elementos ajuda as pessoas a
+            entender e utilizar um sistema. Busco aprender com referências, experimentação visual e organização clara
+            das informações.
+          </p>
+
+          <div class="etiquetas">
+            <span>Hierarquia visual</span>
+            <span>Organização de conteúdo</span>
+            <span>Experiência do usuário</span>
+          </div>
         </div>
-      </div>
 
-      <div class="theme-content theme-content-3">
-        <span class="section-label">03 — AMBCOMP</span>
-        <h2>Tecnologia e computação.</h2>
-        <p>
-          Estudos relacionados à computação e à aplicação da tecnologia na resolução de problemas.
-        </p>
+        <div class="cartoes">
 
-        <div class="traits">
-          <span>Computação</span>
-          <span>Tecnologia</span>
-          <span>Pesquisa</span>
+          <article class="cartao">
+            <span>UI &amp; UX · ESTUDO</span>
+
+            <h3>Composição de interfaces</h3>
+
+            <p>
+              Exercícios pessoais para praticar hierarquia visual, leitura e organização de elementos na tela.
+            </p>
+
+            <small>Em desenvolvimento</small>
+          </article>
+
+          <article class="cartao">
+            <span>UI &amp; UX · PROCESSO</span>
+
+            <h3>Instruções intuitivas</h3>
+
+            <p>
+              No CREA-MG, contribuí com a criação de passo a passos para orientar pessoas no uso do sistema SEI.
+            </p>
+
+            <small>Experiência profissional</small>
+          </article>
+
         </div>
-      </div>
 
-      <div class="theme-content theme-content-4">
-        <span class="section-label">04 — BANCO DE DADOS</span>
-        <h2>Organização de dados.</h2>
-        <p>
-          Estudo de bancos de dados relacionais, SQL e formas de organizar e manipular informações.
-        </p>
+      </article>
 
-        <div class="traits">
-          <span>MySQL</span>
-          <span>SQL</span>
-          <span>Modelagem</span>
+      <!-- Área 2: Front-end. -->
+      <article class="area area-2">
+
+        <div class="area-texto">
+          <span class="rotulo">02 — FRONT-END</span>
+
+          <h2>Interfaces para a web.</h2>
+
+          <p>
+            Estou aprendendo a construir páginas com HTML, CSS e JavaScript. Neste portfólio, pratico estrutura,
+            estilo, interações e adaptação a telas menores, avançando gradualmente a partir dos fundamentos.
+          </p>
+
+          <div class="etiquetas">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript em estudo</span>
+          </div>
         </div>
-      </div>
 
-      <div class="theme-content theme-content-5">
-        <span class="section-label">05 — C#</span>
-        <h2>Lógica e programação.</h2>
-        <p>
-          Estudos de programação utilizando C#, trabalhando lógica, algoritmos e conceitos de orientação a objetos.
-        </p>
+        <div class="cartoes">
 
-        <div class="traits">
-          <span>C#</span>
-          <span>POO</span>
-          <span>Algoritmos</span>
+          <article class="cartao">
+            <span>FRONT-END · ESTUDO</span>
+
+            <h3>Este portfólio</h3>
+
+            <p>
+              Site experimental em HTML, CSS e JavaScript que usa um disco de vinil como navegação entre áreas de
+              interesse.
+            </p>
+
+            <small>Projeto pessoal</small>
+          </article>
+
+          <article class="cartao">
+            <span>FRONT-END · APRENDIZADO</span>
+
+            <h3>Interfaces web</h3>
+
+            <p>
+              Prática de estruturação, estilos, adaptação para telas menores e interações simples no navegador.
+            </p>
+
+            <small>Em desenvolvimento</small>
+          </article>
+
         </div>
-      </div>
+
+      </article>
+
+      <!-- Área 3: AmbComp. -->
+      <article class="area area-3">
+
+        <div class="area-texto">
+          <span class="rotulo">03 — AMBCOMP</span>
+
+          <h2>Tecnologia e computação.</h2>
+
+          <p>
+            Minha formação técnica inclui fundamentos de informática e hardware. Tenho interesse em compreender como os
+            computadores e sistemas funcionam e como a tecnologia pode apoiar tarefas reais.
+          </p>
+
+          <div class="etiquetas">
+            <span>Hardware básico</span>
+            <span>Computação</span>
+            <span>Aprendizado técnico</span>
+          </div>
+        </div>
+
+        <div class="cartoes">
+
+          <article class="cartao">
+            <span>AMBCOMP · FORMAÇÃO</span>
+
+            <h3>Fundamentos de hardware</h3>
+
+            <p>
+              Certificado pelo COTEMIG e Cisco Networking Academy.
+            </p>
+
+            <small>21 jun. 2026</small>
+          </article>
+
+          <article class="cartao">
+            <span>AMBCOMP · FORMAÇÃO</span>
+
+            <h3>Introdução à IA moderna</h3>
+
+            <p>
+              Certificado introdutório pelo COTEMIG e Cisco Networking Academy.
+            </p>
+
+            <small>11 jun. 2026</small>
+          </article>
+
+        </div>
+
+      </article>
+
+      <!-- Área 4: Banco de dados. -->
+      <article class="area area-4">
+
+        <div class="area-texto">
+          <span class="rotulo">04 — BANCO DE DADOS</span>
+
+          <h2>Informações organizadas.</h2>
+
+          <p>
+            Tenho contato com fundamentos de bancos de dados e consultas SQL durante meus estudos. Quero desenvolver
+            mais prática na organização, consulta e interpretação de informações.
+          </p>
+
+          <div class="etiquetas">
+            <span>SQL em estudo</span>
+            <span>Dados relacionais</span>
+            <span>Organização</span>
+          </div>
+        </div>
+
+        <div class="cartoes">
+
+          <article class="cartao">
+            <span>DADOS · ESTUDO</span>
+
+            <h3>Consultas e organização</h3>
+
+            <p>
+              Estudos de SQL e conceitos de bancos de dados relacionais na formação técnica.
+            </p>
+
+            <small>Em aprendizado</small>
+          </article>
+
+          <article class="cartao">
+            <span>GESTÃO DOCUMENTAL · CREA-MG</span>
+
+            <h3>Rotinas com o SEI</h3>
+
+            <p>
+              Apoio à implementação do SEI e criação de guias passo a passo para orientar usuários.
+            </p>
+
+            <small>Jovem aprendiz · 7 meses</small>
+          </article>
+
+        </div>
+
+      </article>
+
+      <!-- Área 5: C#. -->
+      <article class="area area-5">
+
+        <div class="area-texto">
+          <span class="rotulo">05 — C#</span>
+
+          <h2>Lógica e programação.</h2>
+
+          <p>
+            Tenho conhecimentos básicos de lógica de programação em C# e sigo desenvolvendo minha capacidade de
+            decompor problemas, compreender algoritmos e organizar soluções de forma clara.
+          </p>
+
+          <div class="etiquetas">
+            <span>C# básico</span>
+            <span>Lógica</span>
+            <span>Algoritmos</span>
+          </div>
+        </div>
+
+        <div class="cartoes">
+
+          <article class="cartao">
+            <span>C# · ESTUDO</span>
+
+            <h3>Lógica de programação</h3>
+
+            <p>
+              Prática de fundamentos de programação em C#, com foco em compreender problemas e estruturar soluções.
+            </p>
+
+            <small>Nível básico</small>
+          </article>
+
+          <article class="cartao">
+            <span>CISCO NETWORKING ACADEMY</span>
+
+            <h3>Getting Started with Cisco Packet Tracer</h3>
+
+            <p>
+              Certificado introdutório pelo COTEMIG e Cisco Networking Academy.
+            </p>
+
+            <small>16 jun. 2026</small>
+          </article>
+
+        </div>
+
+      </article>
+
     </section>
 
-    <section id="projetos" class="projects-section">
-      <div class="projects-header">
-        <span class="section-label">PROJETOS</span>
-        <h2>O que estou construindo.</h2>
+    <!-- Experiência profissional. -->
+    <section class="secao" id="experiencia">
+
+      <div class="experiencia-grade">
+
+        <div>
+          <span class="rotulo">EXPERIÊNCIA PROFISSIONAL</span>
+
+          <h2>7 meses na Gestão Documental do CREA-MG</h2>
+
+          <p class="apoio">
+            Atuei como jovem aprendiz na área de Gestão Documental do CREA-MG. Nesse ambiente, a
+            organização e a recuperação de informações fazem diferença nos processos institucionais, e foi nesse
+            contexto que ajudei a implementar o SEI e a ensiná-lo com passo a passos intuitivos.
+          </p>
+        </div>
+
+        <div class="flutuantes">
+
+          <article class="cartao flutuante">
+            <span>SISTEMA SEI</span>
+
+            <h3>Implementação</h3>
+
+            <p>
+              Apoiei a implementação do SEI no CREA-MG.
+            </p>
+          </article>
+
+          <article class="cartao flutuante">
+            <span>PASSO A PASSOS</span>
+
+            <h3>Ensinar usando o SEI</h3>
+
+            <p>
+              Criei passo a passos intuitivos para orientar as pessoas no uso do sistema.
+            </p>
+          </article>
+
+          <article class="cartao flutuante">
+            <span>SITES E SISTEMAS</span>
+
+            <h3>Propostas governamentais</h3>
+
+            <p>
+              Participei da elaboração de propostas de adaptação ou criação de sites e sistemas governamentais.
+            </p>
+          </article>
+
+        </div>
+
       </div>
 
-      <div class="theme-projects theme-projects-1">
-        <div class="project-card">
-          <span>UI  UX</span>
-          <h3>Landing Page</h3>
-          <p>Projeto focado em composição visual, interface e experiência do usuário.</p>
-        </div>
-
-        <div class="project-card">
-          <span>UI  UX</span>
-          <h3>Protótipo Figma</h3>
-          <p>Estudo de organização visual, fluxo e prototipação.</p>
-        </div>
-      </div>
-
-      <div class="theme-projects theme-projects-2">
-        <div class="project-card">
-          <span>FRONT-END</span>
-          <h3>Portfólio</h3>
-          <p>Desenvolvimento de um portfólio utilizando HTML, CSS e JavaScript.</p>
-        </div>
-
-        <div class="project-card">
-          <span>FRONT-END</span>
-          <h3>Landing Page</h3>
-          <p>Desenvolvimento de uma interface responsiva para web.</p>
-        </div>
-      </div>
-
-      <div class="theme-projects theme-projects-3">
-        <div class="project-card">
-          <span>AMBCOMP</span>
-          <h3>Projeto acadêmico</h3>
-          <p>Projeto relacionado aos estudos de computação e tecnologia.</p>
-        </div>
-      </div>
-
-      <div class="theme-projects theme-projects-4">
-        <div class="project-card">
-          <span>BANCO DE DADOS</span>
-          <h3>Banco MySQL</h3>
-          <p>Projeto envolvendo estruturação, consultas e organização de dados utilizando SQL.</p>
-        </div>
-      </div>
-
-      <div class="theme-projects theme-projects-5">
-        <div class="project-card">
-          <span>C#</span>
-          <h3>Projeto em C#</h3>
-          <p>Exercícios e aplicações desenvolvidos para praticar lógica e programação.</p>
-        </div>
-      </div>
     </section>
 
-    <section id="contato" class="contact-section">
-      <div class="contact-content">
-        <span class="section-label">CONTATO</span>
+    <!-- Formação e certificados. -->
+    <section class="secao" id="formacao">
+
+      <div class="secao-topo">
+        <span class="rotulo">FORMAÇÃO</span>
+
+        <h2>Aprender, aplicar, melhorar.</h2>
+
+        <p class="apoio">
+          Sou estudante da 2ª série do curso técnico em Informática do Colégio COTEMIG, com previsão de
+          conclusão em 2027. No caminho, venho reunindo certificados e prática em hardware, lógica de programação,
+          bancos de dados e web.
+        </p>
+      </div>
+
+      <div class="linha-do-tempo">
+
+        <div class="marco">
+          <small>11 jun. 2026</small>
+
+          <h3>Introdução à IA moderna</h3>
+
+          <p>
+            Certificado introdutório pelo COTEMIG e Cisco Networking Academy.
+          </p>
+        </div>
+
+        <div class="marco">
+          <small>16 jun. 2026</small>
+
+          <h3>Getting Started with Cisco Packet Tracer</h3>
+
+          <p>
+            Certificado introdutório pelo COTEMIG e Cisco Networking Academy.
+          </p>
+        </div>
+
+        <div class="marco">
+          <small>21 jun. 2026</small>
+
+          <h3>Fundamentos do Hardware do Computador</h3>
+
+          <p>
+            Certificado pelo COTEMIG e Cisco Networking Academy.
+          </p>
+        </div>
+
+        <div class="marco">
+          <small>Previsão: 2027</small>
+
+          <h3>Conclusão do curso técnico em Informática</h3>
+
+          <p>
+            Formação no Colégio COTEMIG, hoje na 2ª série.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="etiquetas lista">
+        <span>Hardware — básico</span>
+        <span>Lógica em C# — básico</span>
+        <span>Pacote Office — básico</span>
+        <span>Inglês — intermediário</span>
+        <span>Trabalho em equipe</span>
+      </div>
+
+    </section>
+
+    <!-- Contato. -->
+    <section class="secao" id="contato">
+
+      <div class="contato-caixa">
+
+        <span class="rotulo">CONTATO</span>
+
         <h2>Vamos conversar?</h2>
 
         <p>
-          Entre em contato para conhecer meus projetos, acompanhar meu trabalho ou conversar sobre desenvolvimento.
+          Estou aberto a conversar sobre tecnologia, aprendizado e oportunidades de estágio na área de informática.
+          Você pode conhecer meus estudos no GitHub ou entrar em contato por e-mail.
         </p>
 
-        <div class="contact-buttons">
-          <a href="https://github.com/SEU-USUARIO" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="https://wa.me/SEU-NUMERO" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <div class="contato-botoes">
+          <a href="https://github.com/joaodesmolins52-code">GitHub</a>
+          <a href="mailto:joaodesmolins52@gmail.com">E-mail</a>
         </div>
+
       </div>
+
     </section>
 
-    <div class="site-ending">
+    <!-- Linhas SVG decorativas no encerramento. -->
+    <div class="encerramento">
+
       <svg viewBox="0 0 1920 360" preserveAspectRatio="none" aria-hidden="true">
+
         <defs>
-          <linearGradient id="endingFade" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="var(--accent)" stop-opacity="0">
-            <stop offset="18%" stop-color="var(--accent)" stop-opacity=".7">
-            <stop offset="50%" stop-color="var(--accent)" stop-opacity="1">
-            <stop offset="82%" stop-color="var(--accent)" stop-opacity=".7">
-            <stop offset="100%" stop-color="var(--accent)" stop-opacity="0">
+          <linearGradient id="degrade-encerramento" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="var(--cor-destaque)" stop-opacity="0"></stop>
+            <stop offset="18%" stop-color="var(--cor-destaque)" stop-opacity=".7"></stop>
+            <stop offset="50%" stop-color="var(--cor-destaque)" stop-opacity="1"></stop>
+            <stop offset="82%" stop-color="var(--cor-destaque)" stop-opacity=".7"></stop>
+            <stop offset="100%" stop-color="var(--cor-destaque)" stop-opacity="0"></stop>
           </linearGradient>
         </defs>
 
-        <path class="ending-line" d="M0 0 Q960 360 1920 0"></path>
+        <path class="encerramento-linha" d="M0 0 Q960 360 1920 0"></path>
+
       </svg>
 
-      <div class="ending-glow"></div>
+      <div class="encerramento-brilho"></div>
+
     </div>
+
   </div>
 
-  <script src="script.js"></script>
 </body>
+
 </html>
