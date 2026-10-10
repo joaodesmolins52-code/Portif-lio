@@ -85,15 +85,55 @@ const configuracoes = {
     }
 };
 
+const paletas = {
+    phase1: {
+        fundo: "#0f0818",
+        principal: "#8e44ad",
+        secundaria: "#54246f",
+        destaque: "#c26cff"
+    },
+
+    phase2: {
+        fundo: "#241507",
+        principal: "#e89b20",
+        secundaria: "#9b5b0c",
+        destaque: "#ffd21c"
+    },
+
+    phase3: {
+        fundo: "#07151c",
+        principal: "#247ba0",
+        secundaria: "#153e52",
+        destaque: "#5ecbff"
+    },
+
+    phase4: {
+        fundo: "#07170e",
+        principal: "#3e9148",
+        secundaria: "#236332",
+        destaque: "#8adf67"
+    },
+
+    phase5: {
+        fundo: "#1c0905",
+        principal: "#d94b27",
+        secundaria: "#8b2818",
+        destaque: "#ff795c"
+    }
+};
+// Aqui ficam as cores de cada área, pra n precisar espalhar elas pelo código inteiro.
+
 const svgNS = "http://www.w3.org/2000/svg";
 // Mais essa chatisse de SVG
 
+const textoDinamico =
+    document.querySelector("#letreiro");
 // essa parte é legal, é o meu texto q fica mudando quando vc muda de fase
-const textoDinamico = document.querySelector("#letreiro");
 
-const fases = document.querySelectorAll(
-    'input[name="phase"]'
-);
+const fases =
+    document.querySelectorAll(
+        'input[name="phase"]'
+    );
 
 const containerBase =
     document.querySelector("#bg-base");
@@ -104,17 +144,61 @@ const containerGlow =
 const site =
     document.querySelector(".site");
 
+const disco =
+    document.querySelector(".disco");
+
+const paineis =
+    document.querySelectorAll(".painel-faixa");
+
+const areas =
+    document.querySelectorAll(".area");
+
+const bolinhas =
+    document.querySelectorAll(".bolinha");
+
 let intervaloScramble = null;
 
 let mouseFrame = null;
+
+let mouseAtivo = false;
 
 let mouseX = -1000;
 let mouseY = -1000;
 // descobri q é assim q se acha X e Y e dps configurei pro lugar onde queria q ele fosse usado
 
+
+function obterFaseAtiva() {
+
+    return (
+        document.querySelector(
+            'input[name="phase"]:checked'
+        )?.id || "phase1"
+    );
+}
+
+
+// Essa parte pega um caractere aleatório pra animação do texto.
+function obterCaractereAleatorio() {
+
+    const caracteres =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*";
+    // Achei meio engraçado o resultado final mas isso aqui é as possiveis variações de palavras
+
+    return caracteres[
+        Math.floor(
+            Math.random() * caracteres.length
+        )
+    ];
+}
+
+
 function embaralharTexto(elemento, texto) {
 
-    if (intervaloScramble) {
+    if (!elemento) {
+        return;
+    }
+
+    if (intervaloScramble !== null) {
         clearInterval(intervaloScramble);
         intervaloScramble = null;
     }
@@ -124,29 +208,21 @@ function embaralharTexto(elemento, texto) {
 
     const spans = [];
 
-    const caracteres =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*";
-    //   Achei meio engraçado o resultado final mas isso aqui é as possiveis variações de palavras
-
     for (
         let i = 0;
         i < texto.length;
         i++
     ) {
 
-        const span = document.createElement("span");
+        const span =
+            document.createElement("span");
 
-        span.className = "scramble-char";
+        span.className = "letra";
 
         span.textContent =
             texto[i] === " "
-                ? " "
-                : caracteres[
-                Math.floor(
-                    Math.random() *
-                    caracteres.length
-                )
-                ];
+                ? "\u00A0"
+                : obterCaractereAleatorio();
 
         spans.push(span);
 
@@ -154,10 +230,11 @@ function embaralharTexto(elemento, texto) {
     }
 
     elemento.replaceChildren(fragment);
-    //   Isso eu ainda n entendi direito, foi mal mas peguei essa linha com IA
+    // Isso eu ainda n entendi direito, foi mal mas peguei essa linha com IA
+    // Pelo q entendi, isso troca o conteúdo antigo pelo novo q eu montei ali em cima.
 
     let contador = 0;
-    // fiquei com preguiça agora ent vou parar de comentar, dcp Susu kkkk
+    // fiquei com preguiça agora ent vou parar de comentar, dcp Susu kkkkk
 
     intervaloScramble = setInterval(() => {
 
@@ -172,33 +249,26 @@ function embaralharTexto(elemento, texto) {
 
             if (caractere === " ") {
 
-                span.textContent = " ";
-                span.className =
-                    "scramble-char";
+                span.textContent = "\u00A0";
+
+                span.className = "letra";
 
                 continue;
             }
 
             if (i < contador) {
 
-                span.textContent =
-                    caractere;
+                span.textContent = caractere;
 
-                span.className =
-                    "scramble-char done";
+                span.className = "letra";
 
             } else {
 
                 span.textContent =
-                    caracteres[
-                    Math.floor(
-                        Math.random() *
-                        caracteres.length
-                    )
-                    ];
+                    obterCaractereAleatorio();
 
                 span.className =
-                    "scramble-char scrambling";
+                    "letra embaralhando";
             }
         }
 
@@ -217,15 +287,17 @@ function embaralharTexto(elemento, texto) {
             ) {
 
                 spans[i].textContent =
-                    texto[i];
+                    texto[i] === " "
+                        ? "\u00A0"
+                        : texto[i];
 
-                spans[i].className =
-                    "scramble-char done";
+                spans[i].className = "letra";
             }
         }
 
     }, 45);
 }
+
 
 function atualizarTexto(fase) {
 
@@ -233,8 +305,7 @@ function atualizarTexto(fase) {
         return;
     }
 
-    const texto =
-        nomesFases[fase];
+    const texto = nomesFases[fase];
 
     if (!texto) {
         return;
@@ -246,87 +317,40 @@ function atualizarTexto(fase) {
     );
 }
 
-function criarGradiente(svg) {
 
-    const defs =
-        document.createElementNS(
-            svgNS,
-            "defs"
-        );
+// Essa função troca as cores dependendo da área selecionada.
+function atualizarPaleta(fase) {
 
-    const gradient =
-        document.createElementNS(
-            svgNS,
-            "linearGradient"
-        );
-
-    gradient.id =
-        "musicFade";
-
-    gradient.setAttribute(
-        "x1",
-        "0"
-    );
-
-    gradient.setAttribute(
-        "y1",
-        "0"
-    );
-
-    gradient.setAttribute(
-        "x2",
-        "0"
-    );
-
-    gradient.setAttribute(
-        "y2",
-        "1"
-    );
-
-    const stops = [
-        ["0%", "1"],
-        ["18%", ".95"],
-        ["38%", ".8"],
-        ["58%", ".55"],
-        ["75%", ".28"],
-        ["90%", ".08"],
-        ["100%", "0"]
-    ];
-
-    for (
-        const [offset, opacity]
-        of stops
-    ) {
-
-        const stop =
-            document.createElementNS(
-                svgNS,
-                "stop"
-            );
-
-        stop.setAttribute(
-            "offset",
-            offset
-        );
-
-        stop.setAttribute(
-            "stop-color",
-            "var(--cor-destaque)"
-        );
-
-        stop.setAttribute(
-            "stop-opacity",
-            opacity
-        );
-
-        gradient.appendChild(stop);
+    if (!site) {
+        return;
     }
 
-    defs.appendChild(gradient);
+    const cores =
+        paletas[fase] || paletas.phase1;
 
-    svg.appendChild(defs);
+    site.style.setProperty(
+        "--fundo",
+        cores.fundo
+    );
+
+    site.style.setProperty(
+        "--cor-principal",
+        cores.principal
+    );
+
+    site.style.setProperty(
+        "--cor-secundaria",
+        cores.secundaria
+    );
+
+    site.style.setProperty(
+        "--cor-destaque",
+        cores.destaque
+    );
 }
 
+
+// Aqui começa a parte q calcula o formato das ondas.
 function calcularOnda(
     t,
     linha,
@@ -357,7 +381,7 @@ function calcularOnda(
                 : 0
         );
 
-    let ondaPrincipal =
+    const ondaPrincipal =
         Math.sin(
             t *
             Math.PI *
@@ -417,7 +441,7 @@ function calcularOnda(
                 Math.PI *
                 55 +
                 linha * 2
-            ) * .22;
+            );
 
     } else if (fase === "phase4") {
 
@@ -445,11 +469,10 @@ function calcularOnda(
                 Math.PI *
                 37 +
                 linha * 1.7
-            ) * .45;
+            );
     }
 
-    ondaMicro *=
-        config.microForca;
+    ondaMicro *= config.microForca;
 
     let energia = 1;
 
@@ -553,6 +576,8 @@ function calcularOnda(
     );
 }
 
+
+// Essa função desenha uma linha de cada vez.
 function criarPath(
     config,
     linha,
@@ -571,8 +596,7 @@ function criarPath(
             : linha /
             (config.linhas - 1);
 
-    const centro =
-        nivel - .5;
+    const centro = nivel - .5;
 
     const pontos =
         new Array(
@@ -586,8 +610,7 @@ function criarPath(
     ) {
 
         const t =
-            ponto /
-            config.pontos;
+            ponto / config.pontos;
 
         const x =
             1510 -
@@ -614,11 +637,13 @@ function criarPath(
     );
 
     path.setAttribute(
+        "fill",
+        "none"
+    );
+
+    path.setAttribute(
         "stroke-width",
-        linha ===
-            Math.floor(
-                config.linhas / 2
-            )
+        linha === Math.floor(config.linhas / 2)
             ? "2.8"
             : "1.6"
     );
@@ -626,10 +651,13 @@ function criarPath(
     return path;
 }
 
+
+// Aqui junta as linhas e cria o SVG de cada área.
 function criarSVG(fase) {
 
     const config =
-        configuracoes[fase];
+        configuracoes[fase] ||
+        configuracoes.phase1;
 
     const svg =
         document.createElementNS(
@@ -655,8 +683,6 @@ function criarSVG(fase) {
         "true"
     );
 
-    criarGradiente(svg);
-
     for (
         let linha = 0;
         linha < config.linhas;
@@ -677,7 +703,9 @@ function criarSVG(fase) {
     return svg;
 }
 
-function gerarLinhasMusicais() {
+
+// Coloca as ondas nas duas camadas do fundo.
+function gerarLinhasMusicais(fase = obterFaseAtiva()) {
 
     if (
         !containerBase ||
@@ -686,40 +714,78 @@ function gerarLinhasMusicais() {
         return;
     }
 
-    const faseAtiva =
-        document.querySelector(
-            'input[name="phase"]:checked'
-        )?.id || "phase1";
-
     const svg =
-        criarSVG(faseAtiva);
+        criarSVG(fase);
 
     const svgGlow =
         svg.cloneNode(true);
 
-    containerBase.replaceChildren(
-        svg
-    );
+    containerBase.replaceChildren(svg);
 
-    containerGlow.replaceChildren(
-        svgGlow
-    );
+    containerGlow.replaceChildren(svgGlow);
 }
 
+
+// Atualiza o lugar onde o brilho do mouse aparece.
 function atualizarMouse() {
 
     mouseFrame = null;
 
+    if (!containerGlow || !site) {
+        return;
+    }
+
+    if (!mouseAtivo) {
+
+        containerGlow.style.setProperty(
+            "--luz-x",
+            "-1000px"
+        );
+
+        containerGlow.style.setProperty(
+            "--luz-y",
+            "-1000px"
+        );
+
+        return;
+    }
+
+    const rect =
+        site.getBoundingClientRect();
+
+    const x =
+        mouseX -
+        rect.left;
+
+    const y =
+        mouseY -
+        rect.top;
+
     containerGlow.style.setProperty(
-        "--mouse-x",
-        `${mouseX}px`
+        "--luz-x",
+        `${x}px`
     );
 
     containerGlow.style.setProperty(
-        "--mouse-y",
-        `${mouseY}px`
+        "--luz-y",
+        `${y}px`
     );
 }
+
+
+// Isso evita ficar atualizando o brilho mais vezes do q precisa.
+function agendarAtualizacaoMouse() {
+
+    if (mouseFrame !== null) {
+        return;
+    }
+
+    mouseFrame =
+        requestAnimationFrame(
+            atualizarMouse
+        );
+}
+
 
 if (
     site &&
@@ -727,27 +793,15 @@ if (
 ) {
 
     site.addEventListener(
-        "mousemove",
-        event => {
+        "pointermove",
+        evento => {
 
-            const rect =
-                site.getBoundingClientRect();
+            mouseAtivo = true;
 
-            mouseX =
-                event.clientX -
-                rect.left;
+            mouseX = evento.clientX;
+            mouseY = evento.clientY;
 
-            mouseY =
-                event.clientY -
-                rect.top;
-
-            if (!mouseFrame) {
-
-                mouseFrame =
-                    requestAnimationFrame(
-                        atualizarMouse
-                    );
-            }
+            agendarAtualizacaoMouse();
 
         },
         {
@@ -756,48 +810,147 @@ if (
     );
 
     site.addEventListener(
-        "mouseleave",
+        "pointerleave",
         () => {
 
-            mouseX = -1000;
-            mouseY = -1000;
+            mouseAtivo = false;
 
-            if (!mouseFrame) {
+            agendarAtualizacaoMouse();
 
-                mouseFrame =
-                    requestAnimationFrame(
-                        atualizarMouse
-                    );
+        }
+    );
+
+    window.addEventListener(
+        "scroll",
+        () => {
+
+            if (mouseAtivo) {
+                agendarAtualizacaoMouse();
             }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+    window.addEventListener(
+        "resize",
+        () => {
+
+            if (mouseAtivo) {
+                agendarAtualizacaoMouse();
+            }
+
+        },
+        {
+            passive: true
         }
     );
 }
 
-for (const fase of fases) {
+
+// Essa parte atualiza o painel, as áreas e as bolinhas.
+function atualizarPainel(fase) {
+
+    const numero =
+        Number(
+            fase.replace("phase", "")
+        );
+
+    paineis.forEach(painel => {
+
+        painel.style.display =
+            painel.classList.contains(
+                `painel-${numero}`
+            )
+                ? "block"
+                : "none";
+
+    });
+
+    areas.forEach(area => {
+
+        area.style.display =
+            area.classList.contains(
+                `area-${numero}`
+            )
+                ? "block"
+                : "none";
+
+    });
+
+    bolinhas.forEach((bolinha, indice) => {
+
+        const ativa =
+            indice === numero - 1;
+
+        bolinha.style.background =
+            ativa
+                ? "var(--cor-destaque)"
+                : "";
+
+        bolinha.style.transform =
+            ativa
+                ? "scale(1.5)"
+                : "";
+
+        bolinha.setAttribute(
+            "aria-current",
+            ativa ? "true" : "false"
+        );
+
+    });
+
+    // Cada área gira o disco mais 72 graus.
+    if (disco) {
+
+        disco.style.transform =
+            `rotate(${(numero - 1) * 72}deg)`;
+
+    }
+}
+
+
+// Aqui junta todas as coisas q precisam mudar quando troca de fase.
+function atualizarInterface(fase) {
+
+    if (!configuracoes[fase]) {
+        return;
+    }
+
+    atualizarPaleta(fase);
+
+    atualizarTexto(fase);
+
+    atualizarPainel(fase);
+
+    gerarLinhasMusicais(fase);
+}
+
+
+// Quando clico numa das faixas, tudo é atualizado.
+fases.forEach(fase => {
 
     fase.addEventListener(
         "change",
         () => {
 
-            atualizarTexto(
-                fase.id
-            );
+            if (fase.checked) {
 
-            gerarLinhasMusicais();
+                atualizarInterface(
+                    fase.id
+                );
+
+            }
+
         }
     );
-}
 
-gerarLinhasMusicais();
+});
 
-const faseInicial =
-    document.querySelector(
-        'input[name="phase"]:checked'
-    );
 
-if (faseInicial) {
-
-    atualizarTexto(
-        faseInicial.id
-    );
-}
+// Faz tudo começar funcionando na primeira faixa.
+atualizarInterface(
+    obterFaseAtiva()
+);
